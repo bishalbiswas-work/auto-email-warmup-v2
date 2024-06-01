@@ -1,0 +1,119 @@
+<!-- public/payment.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment</title>
+  </head>
+  <body
+    style="
+      background-image: linear-gradient(
+        270deg,
+        #ad31f919,
+        #3faaf40c,
+        #ffffff7f
+      );
+    "
+  >
+    <div
+      id="container"
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      "
+    >
+      <div
+        id="loading-animation"
+        style="
+          border: 4px solid #f3f3f3; /* Light grey background */
+          border-top: 4px solid #f0c419; /* Blue */
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          animation: spin 2s linear infinite;
+        "
+      ></div>
+    </div>
+
+    <style>
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <!-- <button id="checkout-button">Subscribe Now</button> -->
+    <button id="subscribe-button" style="visibility: hidden">Subscribe</button>
+
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+      const stripe = Stripe(
+        "pk_live_51N3MYEJCMgay6huUOUBvatIbpLSR6gnYSDsUrPY8OwAVcz9yB6PA7I7xSuCUwho7NXhW3pDoJq942nAQywickLmV00DUXpqbcf"
+      ); // Replace with your Stripe public key
+
+      // Function to parse query parameters
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      // Get the email query parameter
+      const email = getQueryParam("email");
+
+      document
+        .getElementById("subscribe-button")
+        .addEventListener("click", async () => {
+          // Prepare the request body to include email if it exists
+          const requestBody = email ? { email } : {};
+
+          const response = await fetch("/api/payment/create-checkout-session", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+          });
+          const { sessionId } = await response.json();
+          const result = await stripe.redirectToCheckout({ sessionId });
+
+          if (result.error) {
+            // Handle any errors that occur during the redirect
+            alert(result.error.message);
+          }
+        });
+    </script>
+
+    <script>
+      window.onload = function () {
+        setTimeout(function () {
+          var button = document.querySelector("#subscribe-button");
+          console.log("Script loaded");
+          if (button) {
+            // Make the button invisible
+            button.style.visibility = "hidden"; // or button.style.display = 'none';
+
+            button.click(); // Click the button
+            console.log("Button clicked");
+
+            // Find and click all elements inside the button
+            var elementsInsideButton = button.querySelectorAll("*");
+            elementsInsideButton.forEach(function (element) {
+              element.click();
+              console.log("Clicked an element inside the button");
+            });
+          } else {
+            console.log("Button not found");
+          }
+        }, 3000); // 3000 milliseconds = 3 seconds
+      };
+    </script>
+  </body>
+</html>

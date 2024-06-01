@@ -1,0 +1,31 @@
+{
+  "name": "v3-with-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/msal-node": "^2.8.1",
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
+    "firebase-admin": "^12.0.0",
+    "googleapis": "^137.1.0",
+    "isomorphic-fetch": "^3.0.0",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.7",
+    "nodemon": "^3.1.1",
+    "react-progressbar-semicircle": "^1.2.1",
+    "rollbar": "^2.26.4",
+    "stripe": "^14.21.0"
+  }
+}

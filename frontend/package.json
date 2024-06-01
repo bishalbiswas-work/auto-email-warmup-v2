@@ -1,0 +1,70 @@
+{
+  "name": "bishals-application-13",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://automatedemailwarmup.com/",
+  "dependencies": {
+    "@dhiwise/react-switch": "^1.0.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.2",
+    "@mui/material": "^5.15.2",
+    "@react-oauth/google": "^0.12.1",
+    "@tailwindcss/forms": "0.4.0",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^1.6.2",
+    "firebase": "^10.7.1",
+    "prop-types": "^15.8.1",
+    "rc-drawer": "^7.1.0",
+    "react": "17.0.2",
+    "react-datepicker": "^4.5.0",
+    "react-dom": "17.0.2",
+    "react-google-login": "^5.2.2",
+    "react-pro-sidebar": "^1.0.0",
+    "react-progressbar-semicircle": "^1.2.1",
+    "react-rating-stars-component": "^2.2.0",
+    "react-router-dom": "6.0.2",
+    "react-router-hash-link": "^2.4.3",
+    "react-scripts": "5.0.0",
+    "react-social-login-buttons": "^3.9.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "reactjs-social-login": "^2.6.3",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": "18.18.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.2",
+    "daisyui": "^4.10.2",
+    "postcss": "8.4.8",
+    "tailwindcss": "3.0.18",
+    "tailwindcss-textshadow": "^2.1.3"
+  }
+}

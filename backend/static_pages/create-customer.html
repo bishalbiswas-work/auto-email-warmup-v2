@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payment Form</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <form id="payment-form">
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+      <button type="submit">Submit Payment</button>
+    </form>
+
+    <script>
+      var stripe = Stripe(
+        "pk_live_51N3MYEJCMgay6huUOUBvatIbpLSR6gnYSDsUrPY8OwAVcz9yB6PA7I7xSuCUwho7NXhW3pDoJq942nAQywickLmV00DUXpqbcf"
+      );
+      var elements = stripe.elements();
+      var card = elements.create("card");
+      card.mount("#card-element");
+
+      var form = document.getElementById("payment-form");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        stripe
+          .createPaymentMethod({
+            type: "card",
+            card: card,
+          })
+          .then(function (result) {
+            if (result.error) {
+              console.log(result.error.message);
+            } else {
+              // Send the paymentMethodId to your server
+              fetch("/create-customer", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  paymentMethodId: result.paymentMethod.id,
+                  email: "customer@example.com",
+                }),
+              }).then(function (response) {
+                response.json().then(function (data) {
+                  console.log(data);
+                });
+              });
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Email Warmup Server User",
+  "description": "A schema for storing and validating user data on an email warmup server.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The user's full name.",
+      "default": ""
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The user's email address.",
+      "default": ""
+    },
+    "warmupEmails": {
+      "type": "array",
+      "description": "List of user details",
+      "items": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The user's email address."
+          },
+          "lastWarmup": {
+            "type": "object",
+            "properties": {
+              "count": {
+                "type": "integer",
+                "description": "Number of warmups performed."
+              },
+              "date": {
+                "type": "string",
+                "format": "date",
+                "description": "The date of the last warmup."
+              }
+            },
+            "required": ["count", "date"],
+            "description": "Details of the last warmup session."
+          },
+          "warmupStatus": {
+            "type": "string",
+            "enum": ["active", "paused", "completed"],
+            "description": "The warmup status of the user's email account.",
+            "default": "active"
+          },
+          "creditsAvailable": {
+            "type": "integer",
+            "description": "Number of warmups performed."
+          }
+        },
+        "required": ["email", "lastWarmup", "warmupStatus"],
+        "additionalProperties": false
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the user account was created.",
+      "default": ""
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the user account was last updated.",
+      "default": ""
+    },
+    "creditsAvailable": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The number of credits available to the user for sending emails.",
+      "default": 0
+    },
+    "paymentStatus": {
+      "type": "string",
+      "enum": ["paid", "unpaid", "trial"],
+      "description": "The payment status of the user.",
+      "default": "unpaid"
+    },
+    "warmupStatus": {
+      "type": "string",
+      "enum": ["active", "paused", "completed"],
+      "description": "The warmup status of the user's email account.",
+      "default": "active"
+    },
+    "lastWarmup": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp of the last email warmup action performed by the user.",
+      "default": ""
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "createdAt",
+    "creditsAvailable",
+    "paymentStatus",
+    "warmupStatus",
+    "lastWarmup"
+  ],
+  "additionalProperties": false
+}
